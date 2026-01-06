@@ -19,6 +19,12 @@ if [ ! -f "$APIKEY_PATH" ]; then
     if [ -z "$APIKEY" ]; then
       APIKEY="$(printf "%s" "$JSON" | sed -n 's/.*\"apikey\":\"\\([^\"]*\\)\".*/\\1/p')"
     fi
+    if [ -z "$APIKEY" ]; then
+      case "$JSON" in
+        \{*) ;; # JSON object, already handled
+        *) APIKEY="$JSON" ;;
+      esac
+    fi
     if [ -n "$APIKEY" ]; then
       echo "HEADSCALE_API_KEY=${APIKEY}"
       printf "%s" "$APIKEY" > "$APIKEY_PATH"
