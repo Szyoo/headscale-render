@@ -20,7 +20,7 @@ server_url: "https://your-service.onrender.com"
 ## Render 部署步骤
 1. 用本仓库创建 **Web Service（Docker）**。
 2. 修改 `headscale/config.yaml` 中的 `server_url` 和 `listen_addr`。
-3. 添加持久化磁盘并挂载到 `/var/lib/headscale`。
+3. Free 计划不支持持久化磁盘，数据会在重启/重部署后丢失。
 4. 确保服务监听端口与 Render 分配端口一致（默认 8080）。
 
 ## 部署后初始化（Render Shell）

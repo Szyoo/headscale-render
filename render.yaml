@@ -6,11 +6,6 @@ services:
     plan: free
     region: oregon
     dockerfilePath: ./Dockerfile
-    startCommand: headscale serve --config /etc/headscale/config.yaml
-    disk:
-      name: headscale-data
-      mountPath: /var/lib/headscale
-      sizeGB: 1
   - type: web
     name: headscale-ui
     env: docker
