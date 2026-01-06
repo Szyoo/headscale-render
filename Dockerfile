@@ -5,4 +5,4 @@ COPY headscale/acl.hujson /etc/headscale/acl.hujson
 
 EXPOSE 8080
 
-CMD ["headscale", "serve", "--config", "/etc/headscale/config.yaml"]
+CMD ["serve", "--config", "/etc/headscale/config.yaml"]
