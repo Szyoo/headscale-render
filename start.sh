@@ -10,7 +10,11 @@ HS_PID="$!"
 if [ ! -f "$APIKEY_PATH" ]; then
   i=0
   while [ "$i" -lt 60 ]; do
-    JSON="$(headscale apikeys create --config "$CONFIG_PATH" --output json --force 2>/dev/null || true)"
+    echo "HEADSCALE_APIKEY_GENERATE_ATTEMPT=$((i + 1))"
+    JSON="$(headscale apikeys create --config "$CONFIG_PATH" --output json-line --force 2>&1 || true)"
+    if [ -n "$JSON" ]; then
+      echo "HEADSCALE_APIKEY_JSON=${JSON}"
+    fi
     APIKEY="$(printf "%s" "$JSON" | sed -n 's/.*\"apiKey\":\"\\([^\"]*\\)\".*/\\1/p')"
     if [ -z "$APIKEY" ]; then
       APIKEY="$(printf "%s" "$JSON" | sed -n 's/.*\"apikey\":\"\\([^\"]*\\)\".*/\\1/p')"
