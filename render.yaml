@@ -18,4 +18,4 @@ services:
       - key: HEADSCALE_URL
         value: https://headscale-render.onrender.com
       - key: HEADSCALE_API_KEY
-        sync: false
+        value: REPLACE_ME
