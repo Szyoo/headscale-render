@@ -19,3 +19,15 @@ services:
         value: https://headscale-6bpk.onrender.com
       - key: HEADSCALE_API_KEY
         value: REPLACE_ME
+  - type: web
+    name: headscale-gateway
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: gateway/Dockerfile
+    dockerContext: gateway
+    envVars:
+      - key: HEADSCALE_UPSTREAM
+        value: https://headscale-6bpk.onrender.com
+      - key: UI_UPSTREAM
+        value: https://headscale-ui-5zwu.onrender.com
