@@ -42,3 +42,7 @@ log:
   level: info
 
 disable_check_updates: true
+
+# Disable DNS override to avoid requiring global nameservers.
+dns:
+  override_local_dns: false
