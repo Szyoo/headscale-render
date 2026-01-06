@@ -59,7 +59,7 @@ headscale preauthkeys create -u <user> --expiration 24h --reusable
 `headscale-ui` 官方要求 UI 与 headscale 在同一子域名，或通过反向代理处理 CORS。
 Render 会给不同服务分配不同子域名，因此会出现 `missing "Bearer " prefix`。
 
-最稳妥的办法是新增一个“网关”服务，把 UI 和 headscale 合并到同一域名：
+最稳妥的办法是新增一个“网关”服务（基于 Nginx），把 UI 和 headscale 合并到同一域名：
 
 1. 新建一个 Web Service（Docker）
 2. Dockerfile 路径：`gateway/Dockerfile`
