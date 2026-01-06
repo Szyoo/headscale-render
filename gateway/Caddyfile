@@ -1,0 +1,8 @@
+:8080 {
+  handle_path /web* {
+    reverse_proxy {$UI_UPSTREAM}
+  }
+  handle {
+    reverse_proxy {$HEADSCALE_UPSTREAM}
+  }
+}

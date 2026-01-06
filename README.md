@@ -55,5 +55,21 @@ headscale preauthkeys create -u <user> --expiration 24h --reusable
      ```
 8. 保存后等待 UI 部署完成，打开其 Render 分配的 URL 访问
 
+## UI 无法连接（Missing Bearer）解决方案
+`headscale-ui` 官方要求 UI 与 headscale 在同一子域名，或通过反向代理处理 CORS。
+Render 会给不同服务分配不同子域名，因此会出现 `missing "Bearer " prefix`。
+
+最稳妥的办法是新增一个“网关”服务，把 UI 和 headscale 合并到同一域名：
+
+1. 新建一个 Web Service（Docker）
+2. Dockerfile 路径：`gateway/Dockerfile`
+3. 设置环境变量：
+   - `HEADSCALE_UPSTREAM`: `https://headscale-6bpk.onrender.com`
+   - `UI_UPSTREAM`: `https://headscale-ui-5zwu.onrender.com`
+4. 部署完成后，访问网关地址：
+   - UI 地址：`https://<gateway>.onrender.com/web`
+   - API 地址：`https://<gateway>.onrender.com`
+5. 在 UI 的设置里把 Headscale URL 改成 `https://<gateway>.onrender.com`
+
 ## 说明
 本项目仅作为控制面使用：已禁用 DERP/relay。
