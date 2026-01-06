@@ -16,6 +16,6 @@ services:
       url: ghcr.io/gurucomputing/headscale-ui:latest
     envVars:
       - key: HEADSCALE_URL
-        value: https://headscale-render.onrender.com
+        value: https://headscale-6bpk.onrender.com
       - key: HEADSCALE_API_KEY
         value: REPLACE_ME

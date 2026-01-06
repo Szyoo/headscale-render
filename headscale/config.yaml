@@ -1,7 +1,7 @@
 # Headscale config template for Render.
 # Replace placeholders before deploy.
 
-server_url: "https://headscale-render.onrender.com"
+server_url: "https://headscale-6bpk.onrender.com"
 listen_addr: "0.0.0.0:8080"
 
 # Optional: expose metrics and gRPC only if you need them.
