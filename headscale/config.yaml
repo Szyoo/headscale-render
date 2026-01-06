@@ -6,8 +6,8 @@ listen_addr: "0.0.0.0:8080"
 
 # Optional: expose metrics and gRPC only if you need them.
 # metrics_listen_addr: "0.0.0.0:9090"
-# grpc_listen_addr: "0.0.0.0:50443"
-# grpc_allow_insecure: false
+grpc_listen_addr: "127.0.0.1:50443"
+grpc_allow_insecure: true
 
 private_key_path: "/var/lib/headscale/private.key"
 noise:
