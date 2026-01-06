@@ -33,8 +33,9 @@ policy:
 derp:
   server:
     enabled: false
-  urls: []
-  auto_update_enabled: false
+  urls:
+    - https://controlplane.tailscale.com/derpmap/default
+  auto_update_enabled: true
   update_frequency: 24h
 
 # Adjust as needed.
