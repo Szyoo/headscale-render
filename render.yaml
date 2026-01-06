@@ -16,7 +16,7 @@ services:
     env: docker
     plan: free
     region: oregon
-    dockerImage: ghcr.io/gurucomputing/headscale-ui:latest
+    image: ghcr.io/gurucomputing/headscale-ui:latest
     envVars:
       - key: HEADSCALE_URL
         value: https://headscale-render.onrender.com
