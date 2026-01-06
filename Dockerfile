@@ -2,7 +2,8 @@ FROM ghcr.io/juanfont/headscale:latest
 
 COPY headscale/config.yaml /etc/headscale/config.yaml
 COPY headscale/acl.hujson /etc/headscale/acl.hujson
+COPY start.sh /start.sh
 
 EXPOSE 8080
 
-CMD ["serve", "--config", "/etc/headscale/config.yaml"]
+ENTRYPOINT ["/start.sh"]

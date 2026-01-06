@@ -29,6 +29,15 @@ headscale users create <user>
 headscale preauthkeys create -u <user> --expiration 24h --reusable
 ```
 
+## 免费版无 Shell 时获取 API Key（自动输出到日志）
+本项目在容器启动时会自动生成一个 API Key，并打印到日志中：
+
+1. 部署 headscale 服务
+2. 打开 Render 日志，搜索 `HEADSCALE_API_KEY=`
+3. 把该值填到 UI 服务的 `HEADSCALE_API_KEY`
+
+注意：免费版无持久化磁盘，重启/重部署会重新生成 Key，需要更新 UI 环境变量。
+
 ## 可选 Web UI（不使用磁盘）
 如果你想操作方便，可以单独部署 UI（不需要磁盘）：
 
