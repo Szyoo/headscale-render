@@ -29,17 +29,22 @@ headscale users create <user>
 headscale preauthkeys create -u <user> --expiration 24h --reusable
 ```
 
-## 已加入一个常见 Web UI（可选）
-Blueprint 里已加入 `headscale-ui` 服务（使用 `ghcr.io/gurucomputing/headscale-ui`）。
+## 可选 Web UI（不使用磁盘）
+如果你想操作方便，可以单独部署 UI（不需要磁盘）：
 
-你需要：
-1. 创建 API Key：
-   ```bash
-   headscale apikeys create
-   ```
-2. 在 Render 的 `headscale-ui` 服务里设置环境变量：
-   - `HEADSCALE_URL`：你的 headscale 公网地址（同 `server_url`）
-   - `HEADSCALE_API_KEY`：上一步生成的 Key
+1. Render → New → Web Service
+2. 选择 **Deploy an existing image**
+3. Image 填：`ghcr.io/gurucomputing/headscale-ui:latest`
+4. Name 建议：`headscale-ui`
+5. Plan 选 **Free**
+6. Create Web Service
+7. 进入该服务的 **Environment**，添加环境变量：
+   - `HEADSCALE_URL`：你的 `server_url`
+   - `HEADSCALE_API_KEY`：在 headscale 服务里执行：
+     ```bash
+     headscale apikeys create
+     ```
+8. 保存后等待 UI 部署完成，打开其 Render 分配的 URL 访问
 
 ## 说明
 本项目仅作为控制面使用：已禁用 DERP/relay。
