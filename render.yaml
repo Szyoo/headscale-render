@@ -1,0 +1,24 @@
+# Render Blueprint template. Adjust values as needed.
+services:
+  - type: web
+    name: headscale
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    startCommand: headscale serve --config /etc/headscale/config.yaml
+    disk:
+      name: headscale-data
+      mountPath: /var/lib/headscale
+      sizeGB: 1
+  - type: web
+    name: headscale-ui
+    env: docker
+    plan: free
+    region: oregon
+    dockerImage: ghcr.io/gurucomputing/headscale-ui:latest
+    envVars:
+      - key: HEADSCALE_URL
+        value: https://headscale-render.onrender.com
+      - key: HEADSCALE_API_KEY
+        value: REPLACE_ME

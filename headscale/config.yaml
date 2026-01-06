@@ -1,0 +1,44 @@
+# Headscale config template for Render.
+# Replace placeholders before deploy.
+
+server_url: "https://headscale-render.onrender.com"
+listen_addr: "0.0.0.0:8080"
+
+# Optional: expose metrics and gRPC only if you need them.
+# metrics_listen_addr: "0.0.0.0:9090"
+# grpc_listen_addr: "0.0.0.0:50443"
+# grpc_allow_insecure: false
+
+private_key_path: "/var/lib/headscale/private.key"
+noise:
+  private_key_path: "/var/lib/headscale/noise_private.key"
+
+database:
+  type: sqlite
+  sqlite:
+    path: "/var/lib/headscale/db.sqlite"
+
+# Standard IP ranges for tailnet nodes.
+ip_prefixes:
+  - 100.64.0.0/10
+  - fd7a:115c:a1e0::/48
+
+# Allow-all ACL by default; adjust in headscale/acl.hujson.
+policy:
+  mode: file
+  path: /etc/headscale/acl.hujson
+
+# Control-plane only: disable DERP/relay.
+derp:
+  server:
+    enabled: false
+  urls: []
+  auto_update_enabled: false
+  update_frequency: 24h
+
+# Adjust as needed.
+log:
+  format: text
+  level: info
+
+disable_check_updates: true
