@@ -19,9 +19,10 @@ database:
     path: "/var/lib/headscale/db.sqlite"
 
 # Standard IP ranges for tailnet nodes.
-ip_prefixes:
-  - 100.64.0.0/10
-  - fd7a:115c:a1e0::/48
+prefixes:
+  v4: 100.64.0.0/10
+  v6: fd7a:115c:a1e0::/48
+  allocation: sequential
 
 # Allow-all ACL by default; adjust in headscale/acl.hujson.
 policy:
